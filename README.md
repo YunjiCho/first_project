@@ -1,4 +1,4 @@
 # first_project
- dkdkdkdkd
  
+ ㅍㅣ라미드 출력하기
  
