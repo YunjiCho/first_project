@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>JavaScript Sample2</title>
+    <script>
+      window.onload = function () {
+        let statusNum = 1;
+        const myHello = document.getElementById("hello");
+
+        myHello.innerHTML = "환영합니다";
+        myHello.style.color = "tomato";
+
+        const addButton = document.getElementById("add-button");
+
+        addButton.addEventListener("click", function () {
+          const actionStatus = document.getElementById("action-status");
+
+          let click = document.createElement("div");
+          click.setAttribute("class", "status");
+          click.innerHTML = String(statusNum) + ": 버튼이 눌렸어요!";
+          statusNum += 1;
+
+          actionStatus.appendChild(click);
+        });
+
+        const delButton = document.getElementById("del-button");
+
+        delButton.addEventListener("click", function () {
+          const status = document.getElementsByClassName("status");
+          status[status.length - 1].remove();
+          statusNum -= 1;
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <h1>안녕하세요</h1>
+    <p id="hello">반가워요 인사를 남겨주세요</p>
+    <button id="add-button">인사하기</button>
+    <button id="del-button">인사취소</button>
+    <p id="action-status">인사 상태:</p>
+  </body>
+</html>
