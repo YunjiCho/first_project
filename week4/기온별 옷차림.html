@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>기온에 따른 옷 추천</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      form {
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      input[type="number"] {
+        font-size: 20px;
+        padding: 5px;
+        margin-left: 10px;
+      }
+
+      button {
+        font-size: 20px;
+        padding: 5px 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      p {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .outfit {
+        display: none;
+        margin: 20px 0;
+        padding: 20px;
+        border: 2px solid black;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      #winter {
+        background-color: #a5c5dd;
+        color: white;
+      }
+
+      #spring-fall {
+        background-color: #d9d9d9;
+        color: black;
+      }
+
+      #summer {
+        background-color: #f4cccc;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>오늘의 옷차림</h1>
+    <form>
+      <label for="temperature">현재 기온(℃)</label>
+      <input
+        type="number"
+        id="temperature"
+        name="temperature"
+        min="-50"
+        max="50"
+        required
+      />
+      <button type="submit">추천</button>
+    </form>
+    <div id="winter-outfit" class="outfit">
+      <p>겨울 옷</p>
+      <img
+        src="http://gdimg.gmarket.co.kr/1899735423/still/600?ver=1622503051"
+      />
+      <img
+        src="https://fpost.co.kr/board/data/editor/2101/thumb-c920ca8635d1b0a7c9e0e80a0cfda293_1611878911_0149_835x573.jpg"
+      />
+    </div>
+    <div id="spring-fall-outfit" class="outfit">
+      <p>봄/가을 옷</p>
+      <img
+        src="https://m.906studio.co.kr/web/product/big/202011/85f054643d8063bc35263039b1cc06c4.jpg"
+      />
+      <img
+        src="https://m.hyn-t.com/web/product/big/202209/c89b15846d496830b5e86136e39077d8.jpg"
+      />
+    </div>
+    <div id="summer-outfit" class="outfit">
+      <p>여름 옷</p>
+      <img
+        src="https://m.new-made.com/web/product/big/2022-06/220620-e-066.jpg"
+      />
+      <img src="https://asset.m-gs.kr/prod/1027631504/1/550" />
+    </div>
+
+    <script>
+      // 겨울 옷 추천 함수
+      function recommendWinter() {
+        document.getElementById("winter-outfit").style.display = "block";
+        document.getElementById("spring-fall-outfit").style.display = "none";
+        document.getElementById("summer-outfit").style.display = "none";
+      }
+
+      // 봄/가을 옷 추천 함수
+      function recommendSpringFall() {
+        document.getElementById("winter-outfit").style.display = "none";
+        document.getElementById("spring-fall-outfit").style.display = "block";
+        document.getElementById("summer-outfit").style.display = "none";
+      }
+
+      // 여름 옷 추천 함수
+      function recommendSummer() {
+        document.getElementById("winter-outfit").style.display = "none";
+        document.getElementById("spring-fall-outfit").style.display = "none";
+        document.getElementById("summer-outfit").style.display = "block";
+      }
+
+      // 폼 제출 이벤트 핸들러
+      document
+        .querySelector("form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // 폼 기본 동작(새로고침) 방지
+          var temperature = parseInt(
+            document.getElementById("temperature").value
+          );
+          if (temperature < 5) {
+            recommendWinter();
+          } else if (temperature >= 5 && temperature < 20) {
+            recommendSpringFall();
+          } else {
+            recommendSummer();
+          }
+        });
+    </script>
+  </body>
+</html>
